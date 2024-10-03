@@ -1,75 +1,113 @@
-<<<<<<< HEAD
-# portfoliowebsite-v1
-Fullstack Responsive Portfolio Website
-=======
-# Getting Started with Create React App
+# React Portfolio Website - CI/CD Pipeline Setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide walks through setting up a React portfolio website with Git, Docker, and Jenkins to create a Continuous Integration/Continuous Deployment (CI/CD) pipeline. It covers local development, Docker containerization, and automating the build and deployment with Jenkins.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Project Overview](#project-overview)
+- [Technologies Used](#technologies-used)
+- [Step 1: Local Development Setup](#step-1-local-development-setup)
+- [Step 2: GitHub Repository Setup](#step-2-github-repository-setup)
+- [Step 3: Docker Integration](#step-3-docker-integration)
+- [Step 4: Jenkins CI/CD Pipeline Setup](#step-4-jenkins-ci-cd-pipeline-setup)
+- [Conclusion](#conclusion)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Overview
 
-### `npm test`
+This project is a **React.js portfolio website** designed to showcase your skills, projects, and contact information. It will be built, tested, and deployed using Docker containers and automated through a Jenkins CI/CD pipeline.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![alt text](presentaion/1.png)
+[text](README.md) ![text](presentaion/2.png) ![text](presentaion/3.png) ![text](presentaion/4.png) ![text](presentaion/5.png) ![text](presentaion/cmddockerjenkins.png) ![text](presentaion/docker.png) ![text](presentaion/git.png) ![text](presentaion/jenkin.png) ![text](presentaion/VS-studio.png)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React.js**: JavaScript library for building user interfaces.
+- **Git**: Version control system.
+- **Docker**: Tool to containerize your application.
+- **Jenkins**: Automation server for CI/CD.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Step 1: Local Development Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1.1 Install Node.js and npm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Before starting, install **Node.js** and **npm**. They are required to run and build the React app.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Download from [Node.js official site](https://nodejs.org/en/).
+- Verify installation by running:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+node -v
+npm -v
 
-## Learn More
+git clone https://github.com/Hamza-Ghaffar/portfoliowebsite-v1.git
+cd portfoliowebsite-v1
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+npm install
+npm start
+# Use the official Node.js image
+FROM node:14
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Set the working directory
+WORKDIR /usr/src/app
 
-### Code Splitting
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Install dependencies
+RUN npm install
 
-### Analyzing the Bundle Size
+# Copy the rest of the application code
+COPY . .
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Build the app
+RUN npm run build
 
-### Making a Progressive Web App
+# Expose the port
+EXPOSE 3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Start the application
+CMD ["npm", "start"]
 
-### Advanced Configuration
+node_modules
+build
+*.log
+docker build -t react-portfolio .
+docker run -p 3000:3000 react-portfolio
+docker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
+#!/bin/bash
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Define the app and container names
+APP_NAME="my-react-app-container"
+IMAGE_NAME="react-portfolio"
 
-### Deployment
+# Navigate to the app directory
+cd "$WORKSPACE"  # Jenkins workspace directory
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Check if the container is already running and remove it if it exists
+if [ "$(docker ps -aq -f name=$APP_NAME)" ]; then
+    echo "Stopping and removing existing container: $APP_NAME"
+    docker rm -f $APP_NAME  # Remove the existing container
+fi
 
-### `npm run build` fails to minify
+# Remove old images if they exist
+if [ "$(docker images -q $IMAGE_NAME)" ]; then
+    echo "Removing old image: $IMAGE_NAME"
+    docker rmi -f $IMAGE_NAME  # Remove the old image
+fi
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 2f519c0 (Initialize project using Create React App)
+# Build the Docker image
+echo "Building the Docker image: $IMAGE_NAME"
+docker build -t $IMAGE_NAME .
+
+# Run the Docker container
+echo "Running the Docker container: $APP_NAME"
+docker run -d -p 3000:3000 --name $APP_NAME $IMAGE_NAME
+```
