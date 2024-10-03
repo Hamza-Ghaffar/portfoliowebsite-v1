@@ -16,6 +16,20 @@ This guide walks through setting up a React portfolio website with Git, Docker, 
 
 ---
 
+# Secure Access to My Projects via ZeroTier
+
+I have set up a private ZeroTier network for secure access to my projects.
+
+## Access Steps:
+
+1. **Install ZeroTier**: Download and install the ZeroTier client from the [official ZeroTier website](https://www.zerotier.com/download/).
+
+2. **Join the Network**: Open the ZeroTier client and enter the network ID `ebe7fbd4450b71ef` to connect to my private VPN.
+
+3. **Explore Applications**: Once connected, navigate to my applications hosted on designated ports to view their functionalities in real time.
+
+This setup ensures secure access to my work without exposing sensitive data to the public.
+
 ## Project Overview
 
 This project is a **React.js portfolio website** designed to showcase your skills, projects, and contact information. It will be built, tested, and deployed using Docker containers and automated through a Jenkins CI/CD pipeline.
