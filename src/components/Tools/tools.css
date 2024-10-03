@@ -1,0 +1,23 @@
+.toolsImg {
+  object-fit: contain; /* Prevents cutting edges */
+  width: 5rem;
+  height: 4rem; /* Consistent height */
+  margin: 0.5rem; /* Space between images */
+  border-radius: 0.5rem; /* Optional: For rounded corners */
+  max-width: 10rem; /* Ensure images don't exceed this width */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .toolsImg {
+    width: 4rem; /* Smaller width for smaller screens */
+    height: 3rem; /* Adjust height accordingly */
+  }
+}
+
+@media (max-width: 480px) {
+  .toolsImg {
+    width: 3rem; /* Even smaller for mobile devices */
+    height: 2rem;
+  }
+}

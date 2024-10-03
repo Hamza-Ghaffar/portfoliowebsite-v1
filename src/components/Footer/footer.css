@@ -1,0 +1,49 @@
+.footer {
+  background-color: rgb(30, 30, 30);
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px; /* Optional: max width for content */
+  margin: 0 auto; /* Center the footer content */
+  padding: 0 1rem;
+}
+
+.footer h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.footer p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between icons */
+  margin-bottom: 2rem; /* Space below social icons */
+}
+
+.social-icon {
+  color: white;
+  font-size: 1.5rem; /* Size of the icons */
+  transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.social-icon:hover {
+  color: #ffde59; /* Change color on hover */
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Optional: light top border */
+  padding-top: 1rem;
+}
+
+.footer-bottom p {
+  font-size: 0.9rem;
+}

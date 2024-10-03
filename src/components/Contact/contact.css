@@ -1,0 +1,101 @@
+#contactPage {
+  margin: 0 auto;
+  min-height: calc(10vh - 14rem);
+  width: 100vw;
+  max-width: 60rem; /* Keep this for centering the content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.contactPageTitle {
+  margin-top: 3rem;
+  font-size: 3rem;
+}
+
+.clientDesc {
+  font-weight: 300;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #ffffff; /* Description text color */
+}
+
+.clientImgs {
+  width: 100%; /* Ensure full width for the container */
+  display: flex;
+  align-content: center;
+  margin: 2rem 0; /* Top and bottom margins */
+  justify-content: center; /* Center images in the container */
+  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+}
+
+.clientImg {
+  object-fit: contain; /* Prevent cutting edges */
+  width: 8rem; /* Set width for square shape */
+  height: 8rem; /* Set height for square shape */
+  margin: 0.5rem; /* Adjust margin to prevent overflow */
+  border-radius: 0.5rem; /* Optional: For rounded corners */
+  flex: 0 1 auto; /* Allow flexibility for items but prevent shrinking */
+  max-width: 10rem; /* Ensure images don't exceed this width */
+  border: 2px solid #ccc; /* Add border to images */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Modern styling for the contact form */
+#contact {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Light background for contrast */
+  padding: 2rem; /* Add padding around the form */
+  border-radius: 1rem; /* Rounded corners for a modern look */
+  max-width: 500px; /* Set a maximum width for the form */
+  margin: 2rem auto; /* Centering the form */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center align the form elements */
+  width: 100%; /* Full width for the form */
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 100%; /* Full width for input fields */
+  padding: 1rem; /* Increased padding for input fields */
+  margin-bottom: 1rem; /* Space between inputs */
+  border-radius: 0.25rem; /* Optional: For rounded corners */
+  border: 1px solid #ccc; /* Border style */
+  font-size: 1rem; /* Font size for inputs */
+  background-color: rgba(255, 255, 255, 0.8); /* Light background for inputs */
+  color: #333; /* Dark text color for contrast */
+  transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  border-color: #ffde59; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.submitBtn {
+  padding: 0.75rem 1.5rem; /* Padding for the button */
+  border: none; /* Remove default border */
+  border-radius: 0.25rem; /* Optional: For rounded corners */
+  background-color: #ffde59; /* Button background color */
+  color: #333; /* Button text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  font-size: 1rem; /* Font size for button */
+}
+
+.submitBtn:hover {
+  background-color: #ffd700; /* Darken button color on hover */
+}
